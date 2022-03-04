@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 
-let path = require("path");
-
 const connected = require("./db/connection.js");
 
 app.set("json spaces", 40);
@@ -20,6 +18,8 @@ connected.then(() => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.json({ message: "ola" });
-});
+// app.get("/", (req, res) => {
+//   res.json({ message: "ola" });
+// });
+
+const router = require("./routes/index.js");
