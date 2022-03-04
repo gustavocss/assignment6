@@ -11,15 +11,20 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-connected.then(() => {
-  console.log("connected to database!");
-  const server = app.listen(8080, () => {
-    console.log("listening...");
+connected
+  .then(() => {
+    console.log("connected to database!");
+    const server = app.listen(8080, () => {
+      console.log("listening...");
+    });
+  })
+  .catch((error) => {
+    console.error(error);
   });
-});
 
 // app.get("/", (req, res) => {
 //   res.json({ message: "ola" });
 // });
 
 const router = require("./routes/index.js");
+app.use("/api/v1", router);
