@@ -22,5 +22,9 @@ connected
         console.error(error);
     });
 
+app.get('/', (req, res) => {
+    res.status(200).send('Heroes API');
+});
+
 const router = require('./routes/index.js');
 app.use('/api/v1', router);
