@@ -14,6 +14,7 @@ const getCharacters = (req, res, next) => {
             });
     } else if (type === 'villains') {
         Character.findByType('villain')
+            .select('name _id')
             .exec()
             .then((villains) => {
                 res.status(200).json(villains);
