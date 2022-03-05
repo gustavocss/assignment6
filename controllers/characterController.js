@@ -4,6 +4,7 @@ const getCharacters = (req, res, next) => {
     const { type } = req.params;
     if (type === 'heroes') {
         Character.findByType('hero')
+            .select('name _id')
             .exec()
             .then((heroes) => {
                 res.status(200).json(heroes);
