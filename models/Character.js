@@ -31,7 +31,7 @@ CharacterSchema.virtual('description').get(function () {
     let descriptionString = `${this.name} is a ${this.type === 'hero' ? 'noble hero' : 'nefarious villain'} whose special powers are `;
     for (power of this.powers) {
         descriptionString += power;
-        descriptionString += ' ';
+        descriptionString += ', ';
     }
     return descriptionString;
 });
