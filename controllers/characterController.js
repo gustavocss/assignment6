@@ -1,37 +1,41 @@
-const getHeroes = (req, res) => {
-  res.json({ heroes: [{ name: "cleiton" }, { name: "batman" }] });
+const getCharacters = (req, res, next) => {
+  const { character } = req.params.character;
+  if (character === "heroes") {
+    res.status(200).json({ heroes: [{ name: "cleiton" }, { name: "batman" }] });
+  } else if (character === "villains") {
+    res
+      .status(200)
+      .json({ villains: [{ name: "cleiton" }, { name: "batman" }] });
+  } else {
+    res.status(404).send("Not found");
+  }
 };
 
-const getHero = (req, res) => {
-  const { id } = req.params;
-  res.json({ id: id, name: `this is the hero with id ${id}` });
+const getCharacter = (req, res) => {
+  const { id, character } = req.params;
+  if (character === "heroes") {
+    res
+      .status(200)
+      .json({ id: id, name: `this is the ${character} with id ${id}` });
+  } else if (character === "villains") {
+    res
+      .status(200)
+      .json({ id: id, name: `this is the ${character} with id ${id}` });
+  } else {
+    res.status(404).send("Not found");
+  }
 };
 
-const postHero = (req, res) => {
+const postCharacter = (req, res) => {
+  const { character } = req.params;
+  // append to heroes or villains
   const { name, powers, hp } = req.body;
-  type = "hero";
-  res.json({ name, powers, type, hp });
-};
-
-const getVillains = (req, res) => {
-  res.json({ villains: [{ name: "cleiton" }, { name: "batman" }] });
-};
-
-const getVillain = (req, res) => {
-  const { id } = req.params;
-  res.json({ id: id, name: `this is the villain with id ${id}` });
-};
-
-const postVillain = (req, res) => {
-  const { name, powers, hp, type } = req.body;
+  type = character;
   res.json({ name, powers, type, hp });
 };
 
 module.exports = {
-  getHeroes,
-  getHero,
-  postHero,
-  getVillains,
-  getVillain,
-  postVillain,
+  getCharacter,
+  getCharacters,
+  postCharacter,
 };

@@ -16,16 +16,13 @@ postVillain     'POST to /villains'
 const router = require("express").Router({ mergeParams: true });
 
 const {
-  getHeroes,
-  getHero,
-  postHero,
+  getCharacter,
+  getCharacters,
+  postCharacter,
 } = require("../controllers/characterController.js");
 
-router.get("/heroes", getHeroes);
-router.get("/heroes/:id", getHero);
-router.post("/heroes", postHero);
-router.get("/villains", getHeroes);
-router.get("/villains/:id", getHero);
-router.post("/villains", postHero);
+router.get("/:character", getCharacters);
+router.get("/:character/:id", getCharacter);
+router.post("/:character", postCharacter);
 
 module.exports = router;
