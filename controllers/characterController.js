@@ -33,6 +33,7 @@ const getCharacter = (req, res) => {
             .exec()
             .then((result) => {
                 newResult = result.toObject();
+                delete newResult.id;
                 res.status(200).json(newResult);
             })
             .catch((error) => {
