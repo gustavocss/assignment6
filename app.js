@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 connected
     .then(() => {
         console.log('connected to database!');
-        const server = app.listen(8080, () => {
+        const server = app.listen(process.env.PORT || 3000, () => {
             console.log('listening...');
         });
     })
