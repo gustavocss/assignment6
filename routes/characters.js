@@ -13,16 +13,12 @@ postVillain     'POST to /villains'
 
 
 */
-const router = require("express").Router({ mergeParams: true });
+const router = require('express').Router({ mergeParams: true });
 
-const {
-  getCharacter,
-  getCharacters,
-  postCharacter,
-} = require("../controllers/characterController.js");
+const { getCharacter, getCharacters, postCharacter } = require('../controllers/characterController.js');
 
-router.get("/:character", getCharacters);
-router.get("/:character/:id", getCharacter);
-router.post("/:character", postCharacter);
+router.get('/', getCharacters);
+router.get('/:id', getCharacter);
+router.post('/', postCharacter);
 
 module.exports = router;
