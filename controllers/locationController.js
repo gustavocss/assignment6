@@ -1,4 +1,3 @@
-const res = require('express/lib/response');
 const Location = require('../models/Location');
 
 const postLocation = (req, res) => {

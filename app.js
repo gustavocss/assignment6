@@ -1,30 +1,26 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
-const connected = require("./db/connection.js");
+const connected = require('./db/connection.js');
 
-app.set("json spaces", 40);
+app.set('json spaces', 40);
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
 connected
-  .then(() => {
-    console.log("connected to database!");
-    const server = app.listen(8080, () => {
-      console.log("listening...");
+    .then(() => {
+        console.log('connected to database!');
+        const server = app.listen(8080, () => {
+            console.log('listening...');
+        });
+    })
+    .catch((error) => {
+        console.error(error);
     });
-  })
-  .catch((error) => {
-    console.error(error);
-  });
 
-// app.get("/", (req, res) => {
-//   res.json({ message: "ola" });
-// });
-
-const router = require("./routes/index.js");
-app.use("/api/v1", router);
+const router = require('./routes/index.js');
+app.use('/api/v1', router);

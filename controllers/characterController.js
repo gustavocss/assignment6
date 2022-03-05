@@ -1,4 +1,3 @@
-const res = require('express/lib/response');
 const Character = require('../models/Character.js');
 
 const getCharacters = (req, res, next) => {
@@ -32,7 +31,8 @@ const getCharacter = (req, res) => {
         Character.findOne({ _id: req.params.id })
             .exec()
             .then((result) => {
-                res.status(200).json(result);
+                newResult = result.toObject();
+                res.status(200).json(newResult);
             })
             .catch((error) => {
                 res.status(500).json(error);

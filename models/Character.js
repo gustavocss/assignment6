@@ -27,13 +27,12 @@ const CharacterSchema = new Schema({
     },
 });
 
-CharacterSchema.virtual('description').get(() => {
+CharacterSchema.virtual('description').get(function () {
     let descriptionString = `${this.name} is a ${this.type === 'hero' ? 'noble hero' : 'nefarious villain'} whose special powers are `;
     for (power of this.powers) {
         descriptionString += power;
         descriptionString += ' ';
     }
-
     return descriptionString;
 });
 
@@ -41,16 +40,7 @@ CharacterSchema.statics.findByType = function (type) {
     return this.find({ type });
 };
 
+CharacterSchema.set('toObject', { getters: true });
+
 const Character = mongoose.model('Character', CharacterSchema);
 module.exports = Character;
-
-/*
-
-  // Assign a function to the "statics" object of our animalSchema
-  animalSchema.statics.findByName = function(name) {
-    return this.find({ name: new RegExp(name, 'i') });
-  };
-  // Or, equivalently, you can call `animalSchema.static()`.
-  animalSchema.static('findByBreed', function(breed) { return this.find({ breed }); });
-
-*/
